@@ -7,7 +7,9 @@ var Encore = require('@symfony/webpack-encore'); Encore
     .addStyleEntry('css/app', './assets/css/app.scss')
     .enableSassLoader()
     // .autoProvidejQuery()
-
+    .configureFilenames({
+      images: '[path][name].[ext]',
+    })
 
     // Enable Vue loader
     .enableVueLoader()

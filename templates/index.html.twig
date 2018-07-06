@@ -1,16 +1,7 @@
 {% extends 'base.html.twig' %}
 {% block body %}
     <div>
-        <h3>Matches</h3>
-        {% if matches %}
-            <ul>
-                {% for match in matches %}
-                    <li>{{ match.id }} {{ match.season.number }} {{ match.map.name }}</li>
-                {% endfor %}
-            </ul>
-        {% else %}
-            <p>No Matches logged</p>
-        {% endif %}
-        <example></example>
+        <h1 class="title is-1">Matches</h1>
+        <match-table-container></match-table-container>
     </div>
 {% endblock %}

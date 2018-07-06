@@ -37,5 +37,111 @@ $addColors: (
 );
 $colors: map-merge($colors, $addColors);
 
-// 6. Import the rest of Bulma
 @import "~bulma/bulma";
+
+
+/*------------------------------------*\
+  #BASIC
+\*------------------------------------*/
+
+/**
+ * Final main CSS file composed of separated Sass files. New created Sass files
+ * need to be added here to have any effect.
+ *
+ * The order of the import directives is important. Changing the file order
+ * within an import directive however should do no harm in most cases.
+ *
+ * We’re using the CSS Guidelines (https://cssguidelin.es/) in all CSS files for
+ * “writing sane, manageable, scalable CSS”. For cases, that are not covered in
+ * the CSS Guidelines, please consult the Sass Guidelines
+ * (https://sass-guidelin.es/).
+ *
+ * The architecture stems from ITCSS (https://itcss.io/). The following
+ * article gives you a complete explanation to this approach:
+ * https://www.creativebloq.com/web-design/manage-large-css-projects-itcss-101517528.
+ */
+
+
+
+
+
+/*------------------------------------*\
+  #SETTINGS
+\*------------------------------------*/
+
+/*
+Settings
+
+Styleguide 1.0
+*/
+
+@import
+'1-settings/settings.misc',
+'1-settings/settings.colors',
+'1-settings/settings.fonts';
+
+
+
+
+
+/*------------------------------------*\
+  #TOOLS
+\*------------------------------------*/
+
+@import
+'2-tools/tools.mixins';
+
+
+
+
+
+/*------------------------------------*\
+  #GENERIC
+\*------------------------------------*/
+
+
+
+
+
+/*------------------------------------*\
+  #ELEMENTS
+\*------------------------------------*/
+
+@import
+'4-elements/elements.body';
+
+
+
+/*------------------------------------*\
+  #OBJECTS
+\*------------------------------------*/
+
+
+
+
+
+
+/*------------------------------------*\
+  #COMPONENTS
+\*------------------------------------*/
+
+@import
+'6-components/components.logo',
+'6-components/components.navigation';
+
+
+
+
+
+/*------------------------------------*\
+  #TRUMPS
+\*------------------------------------*/
+
+
+
+
+
+
+/*------------------------------------*\
+  #BULMA
+\*------------------------------------*/
