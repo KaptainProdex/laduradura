@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Match;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
@@ -12,6 +13,14 @@ class DefaultController extends Controller
      */
     public function index()
     {
-        return $this->render('index.html.twig');
+        $matchRepository = $this->getDoctrine()->getManager()->getRepository(Match::class);
+        $matches = $matchRepository->findAll();
+
+        return $this->render(
+            'index.html.twig',
+            [
+                'matches' => $matches,
+            ]
+        );
     }
 }
