@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -21,18 +22,21 @@ class Match
 
     /**
      * @ORM\ManyToMany(targetEntity="App\Entity\Hero", inversedBy="matches")
+     * @Assert\Count(min="1")
      */
     private $heroes;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Season", inversedBy="matches")
      * @ORM\JoinColumn(nullable=false)
+     * @Assert\NotBlank()
      */
     private $season;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Map", inversedBy="matches")
      * @ORM\JoinColumn(nullable=false)
+     * @Assert\NotBlank()
      */
     private $map;
 
