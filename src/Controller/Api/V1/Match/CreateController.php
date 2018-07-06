@@ -1,5 +1,6 @@
 <?php
 declare(strict_types=1);
+
 namespace App\Controller\Api\V1\Match;
 
 use App\Entity\Match;
@@ -26,9 +27,15 @@ class CreateController extends Controller
 
         $form->submit($data);
 
-        $em->persist($match);
-        $em->flush();
+        if ($form->isValid()) {
+            $em->persist($match);
+            $em->flush();
 
-        return new JsonResponse();
+            return new JsonResponse(null, 201);
+        } else {
+            return new JsonResponse(null, 400);
+        }
+
+
     }
 }
