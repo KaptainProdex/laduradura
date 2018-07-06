@@ -22,6 +22,7 @@ class MatchFormType extends AbstractType
                 EntityType::class,
                 [
                     'class' => Hero::class,
+                    'multiple' => true,
                 ]
             )
             ->add(
@@ -49,6 +50,7 @@ class MatchFormType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => Match::class,
+            'csrf_protection' => false,
         ]);
 
     }
