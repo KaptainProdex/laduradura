@@ -24,7 +24,7 @@ class Hero
     private $name;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Match", mappedBy="heros")
+     * @ORM\ManyToMany(targetEntity="App\Entity\Match", mappedBy="heroes")
      */
     private $matches;
 

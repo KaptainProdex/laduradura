@@ -22,7 +22,7 @@ class Match
     /**
      * @ORM\ManyToMany(targetEntity="App\Entity\Hero", inversedBy="matches")
      */
-    private $heros;
+    private $heroes;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Season", inversedBy="matches")
@@ -38,7 +38,7 @@ class Match
 
     public function __construct()
     {
-        $this->heros = new ArrayCollection();
+        $this->heroes = new ArrayCollection();
     }
 
     public function getId()
@@ -49,15 +49,15 @@ class Match
     /**
      * @return Collection|Hero[]
      */
-    public function getHeros(): Collection
+    public function getHeroes(): Collection
     {
-        return $this->heros;
+        return $this->heroes;
     }
 
     public function addHero(Hero $hero): self
     {
-        if (!$this->heros->contains($hero)) {
-            $this->heros[] = $hero;
+        if (!$this->heroes->contains($hero)) {
+            $this->heroes[] = $hero;
         }
 
         return $this;
@@ -65,8 +65,8 @@ class Match
 
     public function removeHero(Hero $hero): self
     {
-        if ($this->heros->contains($hero)) {
-            $this->heros->removeElement($hero);
+        if ($this->heroes->contains($hero)) {
+            $this->heroes->removeElement($hero);
         }
 
         return $this;

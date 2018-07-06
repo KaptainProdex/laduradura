@@ -20,7 +20,7 @@ class MatchController extends Controller
 
         foreach ($matchRepository->findAll() as $matchObject) {
             $heroes = [];
-            foreach ($matchObject->getHeros() as $heroObject) {
+            foreach ($matchObject->getHeroes() as $heroObject) {
                $hero = [
                    'id' => $heroObject->getId()
                ];
@@ -31,6 +31,7 @@ class MatchController extends Controller
                 'id' => $matchObject->getId(),
                 'season' => $matchObject->getSeason()->getId(),
                 'heroes' => $heroes,
+                'map' =>$matchObject->getMap()->getId(),
             ];
 
             $matches[] = $match;
