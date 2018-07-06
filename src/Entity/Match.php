@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -21,24 +22,27 @@ class Match
 
     /**
      * @ORM\ManyToMany(targetEntity="App\Entity\Hero", inversedBy="matches")
+     * @Assert\Count(min="1")
      */
-    private $heros;
+    private $heroes;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Season", inversedBy="matches")
      * @ORM\JoinColumn(nullable=false)
+     * @Assert\NotBlank()
      */
     private $season;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Map", inversedBy="matches")
      * @ORM\JoinColumn(nullable=false)
+     * @Assert\NotBlank()
      */
     private $map;
 
     public function __construct()
     {
-        $this->heros = new ArrayCollection();
+        $this->heroes = new ArrayCollection();
     }
 
     public function getId()
@@ -49,15 +53,15 @@ class Match
     /**
      * @return Collection|Hero[]
      */
-    public function getHeros(): Collection
+    public function getHeroes(): Collection
     {
-        return $this->heros;
+        return $this->heroes;
     }
 
     public function addHero(Hero $hero): self
     {
-        if (!$this->heros->contains($hero)) {
-            $this->heros[] = $hero;
+        if (!$this->heroes->contains($hero)) {
+            $this->heroes[] = $hero;
         }
 
         return $this;
@@ -65,8 +69,8 @@ class Match
 
     public function removeHero(Hero $hero): self
     {
-        if ($this->heros->contains($hero)) {
-            $this->heros->removeElement($hero);
+        if ($this->heroes->contains($hero)) {
+            $this->heroes->removeElement($hero);
         }
 
         return $this;
