@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace App\Controller\Api\V1\Match;
 
-use App\Entity\Match;
+use App\Dto\Form\MatchDto;
 use App\Form\MatchFormType;
 use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -22,12 +22,14 @@ class CreateController extends Controller
     {
         $data = json_decode($request->getContent(), true);
 
-        $match = new Match();
-        $form = $this->createForm(MatchFormType::class, $match);
+        $matchDto = new MatchDto();
+        $form = $this->createForm(MatchFormType::class, $matchDto);
 
         $form->submit($data);
 
         if ($form->isValid()) {
+            $match = $matchDto->createMatch();
+
             $em->persist($match);
             $em->flush();
 
@@ -35,7 +37,5 @@ class CreateController extends Controller
         } else {
             return new JsonResponse(null, 400);
         }
-
-
     }
 }

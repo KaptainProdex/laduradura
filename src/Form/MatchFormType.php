@@ -3,9 +3,9 @@
 namespace App\Form;
 
 
+use App\Dto\Form\MatchDto;
 use App\Entity\Hero;
 use App\Entity\Map;
-use App\Entity\Match;
 use App\Entity\Season;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
@@ -22,6 +22,7 @@ class MatchFormType extends AbstractType
                 EntityType::class,
                 [
                     'class' => Hero::class,
+                    'multiple' => true,
                 ]
             )
             ->add(
@@ -48,7 +49,8 @@ class MatchFormType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => Match::class,
+            'data_class' => MatchDto::class,
+            'csrf_protection' => false,
         ]);
 
     }

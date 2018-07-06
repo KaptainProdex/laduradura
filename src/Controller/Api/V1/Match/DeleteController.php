@@ -28,7 +28,5 @@ class DeleteController extends Controller
         } catch (\Exception $exception) {
             return new JsonResponse(null, 409);
         }
-
-
     }
 }
