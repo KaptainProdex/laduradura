@@ -8,17 +8,7 @@
            <p>Loading ...</p>
        </div>
        <div v-else>
-           <ul>
-               <li v-for="match in matches">
-                   <b>Match ID:</b> {{ match.id }} <br/>
-                   <b>Season:</b> {{ seasons[match.season].number }} <br/>
-                   <b>Map:</b> {{ maps[match.map].name }} <br/>
-                   <b>Heroes:</b>
-                   <span v-for="hero in match.heroes">
-                       {{ heroes[hero.id].name }}
-                   </span><br/>
-               </li>
-           </ul>
+           <MatchTable :matches="matches"></MatchTable>
        </div>
 </template>
 
@@ -30,8 +20,10 @@ import { getMaps }    from '../api/v1/map'
 
 import { responseTransformer} from '../utility/responseTransformer'
 
+import MatchTable from './MatchTable'
+
 export default {
-    name: "example",
+    name: "match-table-container",
     data: () => {
         return {
             loading: {
@@ -65,9 +57,22 @@ export default {
         })
 
         getMatches().then(function (matches) {
+            matches.forEach(function (match) {
+                match['edit'] = false
+
+                let mHeroes = []
+                match.heroes.forEach(function(hero) {
+                    mHeroes.push(hero.id)
+                })
+                match.heroes = mHeroes
+            })
+
             self.matches = matches
             self.loading.matches = false
         })
+    },
+    components: {
+        MatchTable
     }
 }
 </script>
