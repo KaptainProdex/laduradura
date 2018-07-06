@@ -31,6 +31,7 @@ class MatchController extends Controller
                 'id' => $matchObject->getId(),
                 'season' => $matchObject->getSeason()->getId(),
                 'heroes' => $heroes,
+                'map' =>$matchObject->getMap()->getId(),
             ];
 
             $matches[] = $match;
