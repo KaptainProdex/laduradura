@@ -18,7 +18,7 @@ class MatchFormType extends AbstractType
     {
         $builder
             ->add(
-                'heros',
+                'heroes',
                 EntityType::class,
                 [
                     'class' => Hero::class,
