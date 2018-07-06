@@ -8,14 +8,44 @@
     {% endblock %}
 </head>
 <body>
-<div id="app">
-    <section class="section">
+<header>
+    <nav id="nav-main" class="nav-main nav-main--is-open">
+        <ul>
+            <li class="nav-main__logo">
+                <figure class="logo">
+                    <svg class="svg svg__logo logo__image" viewBox="0 0 300 120">
+                        <use xlink:href="{{ asset('build/assets/images/svg/icon_sprite-laduradura.svg') }}#icon--logo"></use>
+                    </svg>
+                    <figcaption class="logo__caption">climb or die!</figcaption>
+                </figure>
+
+            </li>
+            <li class="nav-main__user media">
+                <div class="media-left">
+                    <figure class="image is-32x32">
+                        <img src="https://assets.webn.mobi/overwatch/f52343cf63f193bc24598dabb07697f1b7a2277fb59f33c8868e2d5a4fc8e122.png" alt="Placeholder image">
+                    </figure>
+                </div>
+                <div class="media-content">
+                    <p class="title is-4">Fowlancr</p>
+                    <p class="subtitle is-6">#2398</p>
+                </div>
+            </li>
+            <li class="nav-main__item nav-main__item--is-active"><a class="nav-main__link" href="#">Matches</a></li>
+            <li class="nav-main__item"><a class="nav-main__link" href="/about">About</a></li>
+        </ul>
+    </nav>
+</header>
+<main id="app" class="main">
+        <section class="section">
         <div class="container">
             {% block body %}{% endblock %}
         </div>
     </section>
-</div>
+</main>
+<div class="nav-main__overlay"></div>
 {% block javascripts %}
-    <script src="{{ asset('build/js/app.js') }}"></script>{% endblock %}
+    <script src="{{ asset('build/js/app.js') }}"></script>
+{% endblock %}
 </body>
 </html>

@@ -1,0 +1,22 @@
+/*------------------------------------*\
+  #BODY
+\*------------------------------------*/
+html{
+  height: 100%;
+}
+
+body {
+  background: $white-snow;
+  height: 100%;
+  margin: 0;
+  line-height: $base-font-lineheight;
+  font-family: $base-font;
+  @include font-size($fontsize-body);
+  -webkit-text-size-adjust: 100%;
+}
+
+header, main, footer {
+  @include tablet{
+    padding-left: 300px;
+  }
+}

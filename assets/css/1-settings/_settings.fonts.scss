@@ -1,0 +1,70 @@
+/*------------------------------------*\
+  #FONTS
+\*------------------------------------*/
+
+/**
+ * 1. Use relative values like rem, em or %. Otherwise text zoom of IE won't
+ *    work, which is an accessibility issue
+ *    (http://testen.bitv-test.de/index.php?a=di&iid=52&s=n). Using rem has the
+ *    benefit that the value is always equivalent to 16px and not depending on
+ *    the location.
+ */
+
+$base-font: Helvetica, Arial, sans-serif;
+$base-font-size: 1rem; /* [1] */
+$base-font-lineheight: 1.5;
+$base-font-weight: 400;
+$base-font-weight--bold: 700;
+
+/*------------------------------------*\
+  #FONT-SIZING
+\*------------------------------------*/
+
+$fontsize-body: (
+  (null, 15px),
+  ($phablet, 15px),
+  ($tablet, 15px),
+  ($desktop-wide, 16px),
+);
+
+$fontsize-h1: (
+  (null, 22px),
+  ($phablet, 24px),
+  ($tablet, 32px),
+  ($desktop-wide, 48px),
+);
+
+$fontsize-h2: (
+  (null, 20px),
+  ($phablet, 20px),
+  ($tablet, 24px),
+  ($desktop-wide, 30px),
+);
+
+$fontsize-h2-small: (
+  (null, 18px),
+  ($phablet, 18px),
+  ($tablet, 22px),
+  ($desktop-wide, 22px),
+);
+
+$fontsize-h3: (
+  (null, 16px),
+  ($phablet, 16px),
+  ($tablet, 18px),
+  ($desktop-wide, 18px),
+);
+
+$fontsize-mini: (
+  (null, 12px),
+  ($phablet, null),
+  ($tablet, null),
+  ($desktop-wide, 14px),
+);
+
+$fontsize-byline: (
+  (null, 14px),
+  ($phablet, null),
+  ($tablet, 15px),
+  ($desktop-wide, 15px),
+);
