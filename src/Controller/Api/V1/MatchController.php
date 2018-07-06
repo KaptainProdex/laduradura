@@ -2,7 +2,6 @@
 declare(strict_types=1);
 namespace App\Controller\Api\V1;
 
-use App\Entity\Match;
 use App\Repository\MatchRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -13,7 +12,7 @@ class MatchController extends Controller
 {
     /**
      * @Method({"GET"})
-     * @Route("/api/v1/match", name="api_v1_match")
+     * @Route("/api/v1/matches", name="api_v1_matches")
      */
     public function index(MatchRepository $matchRepository): JsonResponse
     {
