@@ -12,6 +12,7 @@
                <li v-for="match in matches">
                    <b>Match ID:</b> {{ match.id }} <br/>
                    <b>Season:</b> {{ seasons[match.season].number }} <br/>
+                   <b>Map:</b> {{ maps[match.map].name }} <br/>
                    <b>Heroes:</b>
                    <span v-for="hero in match.heroes">
                        {{ heroes[hero.id].name }}
