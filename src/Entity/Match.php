@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
+ * @ORM\Table(name="`match`")
  * @ORM\Entity(repositoryClass="App\Repository\MatchRepository")
  */
 class Match

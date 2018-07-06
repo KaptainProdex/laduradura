@@ -1,9 +1,16 @@
 {% extends 'base.html.twig' %}
 {% block body %}
-    <div class="text-center">
-        <h3>My Symfony 4 sample project</h3>
-        <div class="jumbotron text-center">
-            <example></example>
-        </div>
+    <div>
+        <h3>Matches</h3>
+        {% if matches %}
+            <ul>
+                {% for match in matches %}
+                    <li>{{ match.id }} {{ match.season.number }} {{ match.map.name }}</li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No Matches logged</p>
+        {% endif %}
+        <example></example>
     </div>
 {% endblock %}
