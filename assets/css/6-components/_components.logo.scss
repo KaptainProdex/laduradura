@@ -1,0 +1,17 @@
+/*------------------------------------*\
+  #LOGO
+\*------------------------------------*/
+
+.logo{
+
+  &__image{
+    max-width: 200px;
+  }
+
+  &__caption{
+    @include font-size($fontsize-h3);
+
+    font-weight: $base-font-weight--bold;
+    padding: $gap/4;
+  }
+}
