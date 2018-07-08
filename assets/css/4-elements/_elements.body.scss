@@ -20,3 +20,15 @@ header, main, footer {
     padding-left: 300px;
   }
 }
+
+.container{
+  max-width: 100%;
+}
+
+.section{
+  padding-left: calc(64px + 1.5rem);
+
+  @include tablet{
+    padding-left: 1.5rem;
+  }
+}

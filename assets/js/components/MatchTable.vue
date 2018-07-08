@@ -1,6 +1,6 @@
 <template>
     <div>
-        <table class="table is-bordered is-fullwidth is-hoverable">
+        <table class="table is-fullwidth is-hoverable">
             <thead>
             <tr>
                 <th>Map</th>

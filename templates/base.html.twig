@@ -16,14 +16,14 @@
                     <svg class="svg svg__logo logo__image" viewBox="0 0 300 120">
                         <use xlink:href="{{ asset('build/assets/images/svg/icon_sprite-laduradura.svg') }}#icon--logo"></use>
                     </svg>
-                    <figcaption class="logo__caption">climb or die!</figcaption>
+                    <figcaption class="logo__caption">It's hard to climb!</figcaption>
                 </figure>
 
             </li>
             <li class="nav-main__user media">
                 <div class="media-left">
-                    <figure class="image is-32x32">
-                        <img src="https://assets.webn.mobi/overwatch/f52343cf63f193bc24598dabb07697f1b7a2277fb59f33c8868e2d5a4fc8e122.png" alt="Placeholder image">
+                    <figure class="image is-48x48">
+                        <img class="is-rounded" src="{{ asset('build/assets/images/dummy/user-icon__dummy.png') }}" alt="Placeholder image">
                     </figure>
                 </div>
                 <div class="media-content">
@@ -31,8 +31,19 @@
                     <p class="subtitle is-6">#2398</p>
                 </div>
             </li>
-            <li class="nav-main__item nav-main__item--is-active"><a class="nav-main__link" href="#">Matches</a></li>
-            <li class="nav-main__item"><a class="nav-main__link" href="/about">About</a></li>
+            <li class="nav-main__item nav-main__item--is-active">
+                <a class="nav-main__link" href="#">
+                    <svg class="nav-main__icon" viewBox="0 0 24 24">
+                        <use xlink:href="{{ asset('build/assets/images/svg/icon_sprite-laduradura.svg') }}#icon--add-circle"></use>
+                    </svg><span class="nav-main__name">Matches</span>
+                </a>
+            </li>
+            <li class="nav-main__item"><a class="nav-main__link" href="/about">
+                    <svg class="nav-main__icon" viewBox="0 0 24 24">
+                        <use xlink:href="{{ asset('build/assets/images/svg/icon_sprite-laduradura.svg') }}#icon--deadline"></use>
+                    </svg><span class="nav-main__name">About</span>
+                </a>
+            </li>
         </ul>
     </nav>
 </header>
