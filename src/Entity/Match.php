@@ -46,7 +46,7 @@ class Match
         return $this->id;
     }
 
-    public function setHeroes(ArrayCollection $heroes): void
+    public function setHeroes(Collection $heroes): void
     {
         $this->heroes = $heroes;
     }
