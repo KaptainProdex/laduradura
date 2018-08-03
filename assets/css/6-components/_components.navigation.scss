@@ -24,7 +24,7 @@
   z-index: 999;
 
   &--is-open{
-    transform: translateX(calc(-300px + 300px));
+    transform: translateX(calc(-300px + 64px));
 
     @include tablet{
       transform: translateX(0);
@@ -69,7 +69,8 @@
     display: flex;
     padding: $gap/4 $gap/2;
 
-    .nav-main__item--is-active &{
+    .nav-main__item--is-active &,
+    .nav-main__item:hover &{
       color: $color-primary--light;
     }
   }

@@ -67,7 +67,7 @@
         props: ['matches'],
         methods: {
             addNewMatch: function() {
-                this.matches.push({
+                this.matches.unshift({
                     edit: true,
                     heroes: [],
                     id: (this.matches.length + 1),
