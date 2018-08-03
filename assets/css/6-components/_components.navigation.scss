@@ -24,7 +24,11 @@
   z-index: 999;
 
   &--is-open{
-    transform: translateX(0);
+    transform: translateX(calc(-300px + 300px));
+
+    @include tablet{
+      transform: translateX(0);
+    }
   }
 
   &__overlay{
@@ -45,20 +49,45 @@
   }
 
   &__user{
-    padding: $gap/4 $gap/2;
+    padding: 0 $gap/2 $gap;
   }
 
   &__item{
     box-shadow: inset 4px 0 0 0 transparent;
-    padding: $gap/4 $gap/2;
     text-transform: uppercase;
 
     &--is-active{
-      box-shadow: inset 4px 0 0 0 $color-primary;
+      box-shadow: inset 4px 0 0 0 $color-primary--light;
     }
   }
 
   &__link{
-    font-weight: $base-font-weight--bold;
+    @include font-size($fontsize-h3);
+
+    align-items: center;
+    color: $color-primary--dark;
+    display: flex;
+    padding: $gap/4 $gap/2;
+
+    .nav-main__item--is-active &{
+      color: $color-primary--light;
+    }
+  }
+
+  &__icon{
+    fill: currentColor;
+    height: auto;
+    margin-right: 1em;
+    width: 2em;
+  }
+
+  &__name{
+    display: none;
+    line-height: 2;
+    letter-spacing: 1px;
+
+    @include tablet{
+      display: inline-block;
+    }
   }
 }
