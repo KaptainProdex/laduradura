@@ -25,6 +25,8 @@ class Map implements JsonSerializable
     private $name;
 
     /**
+     * @var ArrayCollection
+     *
      * @ORM\OneToMany(targetEntity="App\Entity\Match", mappedBy="map", orphanRemoval=true)
      */
     private $matches;
@@ -62,8 +64,7 @@ class Map implements JsonSerializable
     public function addMatch(Match $match): self
     {
         if (!$this->matches->contains($match)) {
-            $this->matches[] = $match;
-            $match->setMap($this);
+            $this->matches->add($match);
         }
 
         return $this;
@@ -73,10 +74,6 @@ class Map implements JsonSerializable
     {
         if ($this->matches->contains($match)) {
             $this->matches->removeElement($match);
-            // set the owning side to null (unless already changed)
-            if ($match->getMap() === $this) {
-                $match->setMap(null);
-            }
         }
 
         return $this;

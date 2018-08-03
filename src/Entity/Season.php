@@ -25,6 +25,8 @@ class Season implements JsonSerializable
     private $number;
 
     /**
+     * @var ArrayCollection
+     *
      * @ORM\OneToMany(targetEntity="App\Entity\Match", mappedBy="season", orphanRemoval=true)
      */
     private $matches;
@@ -62,8 +64,7 @@ class Season implements JsonSerializable
     public function addMatch(Match $match): self
     {
         if (!$this->matches->contains($match)) {
-            $this->matches[] = $match;
-            $match->setSeason($this);
+            $this->matches->add($match);
         }
 
         return $this;
@@ -73,10 +74,6 @@ class Season implements JsonSerializable
     {
         if ($this->matches->contains($match)) {
             $this->matches->removeElement($match);
-            // set the owning side to null (unless already changed)
-            if ($match->getSeason() === $this) {
-                $match->setSeason(null);
-            }
         }
 
         return $this;

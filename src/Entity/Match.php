@@ -21,19 +21,19 @@ class Match implements JsonSerializable
     private $id;
 
     /**
+     * @var ArrayCollection
+     *
      * @ORM\ManyToMany(targetEntity="App\Entity\Hero", inversedBy="matches")
      */
     private $heroes;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Season", inversedBy="matches")
-     * @ORM\JoinColumn(nullable=false)
      */
     private $season;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Map", inversedBy="matches")
-     * @ORM\JoinColumn(nullable=false)
      */
     private $map;
 
@@ -63,7 +63,8 @@ class Match implements JsonSerializable
     public function addHero(Hero $hero): self
     {
         if (!$this->heroes->contains($hero)) {
-            $this->heroes[] = $hero;
+            $hero->addMatch($this);
+            $this->heroes->add($hero);
         }
 
         return $this;
@@ -72,6 +73,7 @@ class Match implements JsonSerializable
     public function removeHero(Hero $hero): self
     {
         if ($this->heroes->contains($hero)) {
+            $hero->removeMatch($this);
             $this->heroes->removeElement($hero);
         }
 

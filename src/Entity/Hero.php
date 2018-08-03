@@ -25,6 +25,8 @@ class Hero implements JsonSerializable
     private $name;
 
     /**
+     * @var ArrayCollection
+     *
      * @ORM\ManyToMany(targetEntity="App\Entity\Match", mappedBy="heroes")
      */
     private $matches;
@@ -62,8 +64,7 @@ class Hero implements JsonSerializable
     public function addMatch(Match $match): self
     {
         if (!$this->matches->contains($match)) {
-            $this->matches[] = $match;
-            $match->addHero($this);
+            $this->matches->add($match);
         }
 
         return $this;
@@ -73,7 +74,6 @@ class Hero implements JsonSerializable
     {
         if ($this->matches->contains($match)) {
             $this->matches->removeElement($match);
-            $match->removeHero($this);
         }
 
         return $this;
