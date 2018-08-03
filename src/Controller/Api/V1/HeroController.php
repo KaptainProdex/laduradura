@@ -16,17 +16,7 @@ class HeroController extends Controller
      */
     public function index(HeroRepository $heroRepository): JsonResponse
     {
-        $heroes = [];
-
-        foreach ($heroRepository->findAll() as $heroObject) {
-            $hero = [
-                'id' => $heroObject->getId(),
-                'name' => $heroObject->getName(),
-            ];
-
-            $heroes[] = $hero;
-        }
-
+        $heroes = $heroRepository->findAll();
         return new JsonResponse($heroes);
     }
 }

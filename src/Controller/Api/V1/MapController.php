@@ -16,17 +16,7 @@ class MapController extends Controller
      */
     public function index(MapRepository $mapRepository): JsonResponse
     {
-        $maps = [];
-
-        foreach ($mapRepository->findAll() as $mapObject) {
-            $map= [
-                'id' => $mapObject->getId(),
-                'name' => $mapObject->getName(),
-            ];
-
-            $maps[] = $map;
-        }
-
+        $maps = $mapRepository->findAll();
         return new JsonResponse($maps);
     }
 }

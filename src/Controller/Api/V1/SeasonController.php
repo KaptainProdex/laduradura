@@ -16,17 +16,7 @@ class SeasonController extends Controller
      */
     public function index(SeasonRepository $seasonRepository): JsonResponse
     {
-        $seasons = [];
-
-        foreach ($seasonRepository->findAll() as $seasonObject) {
-            $season= [
-                'id' => $seasonObject->getId(),
-                'number' => $seasonObject->getNumber(),
-            ];
-
-            $seasons[] = $season;
-        }
-
+        $seasons = $seasonRepository->findAll();
         return new JsonResponse($seasons);
     }
 }

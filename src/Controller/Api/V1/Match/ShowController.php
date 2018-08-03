@@ -13,30 +13,12 @@ class ShowController extends Controller
     /**
      * @Method({"GET"})
      * @Route("/api/v1/matches", name="api_v1_matches")
+     * @param MatchRepository $matchRepository
+     * @return JsonResponse
      */
     public function index(MatchRepository $matchRepository): JsonResponse
     {
-        $matches = [];
-
-        foreach ($matchRepository->findAll() as $matchObject) {
-            $heroes = [];
-            foreach ($matchObject->getHeroes() as $heroObject) {
-               $hero = [
-                   'id' => $heroObject->getId()
-               ];
-               $heroes[] = $hero;
-            }
-
-            $match = [
-                'id' => $matchObject->getId(),
-                'season' => $matchObject->getSeason()->getId(),
-                'heroes' => $heroes,
-                'map' =>$matchObject->getMap()->getId(),
-            ];
-
-            $matches[] = $match;
-        }
-
+        $matches = $matchRepository->findAll();
         return new JsonResponse($matches);
     }
 }
