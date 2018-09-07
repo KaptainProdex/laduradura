@@ -9,7 +9,7 @@
             </tr>
             </thead>
             <tbody>
-            <tr v-for="match in matches">
+            <tr v-for="match, index in matches">
                 <td>
                     <span v-if="!match.edit">
                       {{ $parent.maps[match.map].name }}
@@ -42,8 +42,13 @@
                     </span>
                 </td>
                 <td>
+                    <span v-if="match.edit">
+                        <button class="button is-danger" @click="deleteMatch(match, index)">
+                            Delete
+                        </button>
+                    </span>
                     <button class="button is-link" :class="{'is-success': match.edit}"
-                            @click="match.edit = !match.edit">
+                            @click="matchClick(match)">
                           <span v-if="!match.edit">
                             Edit
                           </span>
@@ -62,6 +67,8 @@
 </template>
 
 <script>
+    import { updateMatch, deleteMatch } from "../api/v1/match";
+
     export default {
         name: 'match-table',
         props: ['matches'],
@@ -74,6 +81,25 @@
                     map: 0,
                     season: 1
                 })
+            },
+            matchClick: function(match) {
+                if (match.edit) {
+                    let data = {
+                        map: match.map,
+                        heroes: match.heroes,
+                        season: match.season
+                    }
+
+                    updateMatch(match.id, data).then(function (response) {
+                        match.edit = false
+                    })
+                } else {
+                    match.edit = true
+                }
+            },
+            deleteMatch: function(match, index) {
+                deleteMatch(match.id)
+                this.$parent.matches.splice(index, 1)
             }
         }
     }

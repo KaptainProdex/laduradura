@@ -13,7 +13,11 @@ export function symfonyFetch(path, method, data) {
         }
 
         fetch(path, options).then(function (response) {
-            return response.json()
+            let contentType = response.headers.get("content-type")
+
+            if (contentType && contentType.indexOf("application/json") !== -1) {
+                return response.json()
+            }
         }).then(function (json) {
             resolve(json)
         })
