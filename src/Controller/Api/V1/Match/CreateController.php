@@ -33,7 +33,7 @@ class CreateController extends Controller
             $em->persist($match);
             $em->flush();
 
-            return new JsonResponse(null, 201);
+            return new JsonResponse($match, 201);
         } else {
             return new JsonResponse(null, 400);
         }

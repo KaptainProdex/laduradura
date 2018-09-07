@@ -11,3 +11,7 @@ export function updateMatch(id, data) {
 export function deleteMatch(id) {
     return symfonyFetch(`/api/v1/matches/${id}`, 'DELETE')
 }
+
+export function createMatch(data) {
+    return symfonyFetch('/api/v1/matches', 'POST', data)
+}

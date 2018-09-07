@@ -42,20 +42,30 @@
                     </span>
                 </td>
                 <td>
-                    <span v-if="match.edit">
+                    <span v-if="match.new">
+                        <button class="button" @click="cancelMatch(index)">
+                            Cancel
+                        </button>
+                        <button class="button is-success" @click="matchCreate(match)">
+                            Create
+                        </button>
+                    </span>
+                    <span v-else>
+                        <span v-if="match.edit">
                         <button class="button is-danger" @click="deleteMatch(match, index)">
                             Delete
                         </button>
+                        </span>
+                        <button class="button is-link" :class="{'is-success': match.edit}"
+                                @click="matchClick(match)">
+                              <span v-if="!match.edit">
+                                Edit
+                              </span>
+                              <span v-else>
+                                Save
+                              </span>
+                        </button>
                     </span>
-                    <button class="button is-link" :class="{'is-success': match.edit}"
-                            @click="matchClick(match)">
-                          <span v-if="!match.edit">
-                            Edit
-                          </span>
-                          <span v-else>
-                            Save
-                          </span>
-                    </button>
                 </td>
             </tr>
             </tbody>
@@ -67,7 +77,7 @@
 </template>
 
 <script>
-    import { updateMatch, deleteMatch } from "../api/v1/match";
+    import { updateMatch, deleteMatch, createMatch } from "../api/v1/match";
 
     export default {
         name: 'match-table',
@@ -75,6 +85,7 @@
         methods: {
             addNewMatch: function() {
                 this.matches.unshift({
+                    new: true,
                     edit: true,
                     heroes: [],
                     id: (this.matches.length + 1),
@@ -100,6 +111,22 @@
             deleteMatch: function(match, index) {
                 deleteMatch(match.id)
                 this.$parent.matches.splice(index, 1)
+            },
+            cancelMatch: function(index) {
+                this.matches.splice(index, 1)
+            },
+            matchCreate: function(match) {
+                let data = {
+                    map: match.map,
+                    heroes: match.heroes,
+                    season: match.season
+                }
+
+                createMatch(data).then(function (response) {
+                    match.id = response.id
+                    match.new = false
+                    match.edit = false
+                })
             }
         }
     }
