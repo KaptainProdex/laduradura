@@ -37,6 +37,13 @@ class Match implements JsonSerializable
      */
     private $map;
 
+
+    /**
+     * @var int|null
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $seasonRank;
+
     public function __construct()
     {
         $this->heroes = new ArrayCollection();
@@ -104,6 +111,16 @@ class Match implements JsonSerializable
         return $this;
     }
 
+    public function getSeasonRank(): ?int
+    {
+        return $this->seasonRank;
+    }
+
+    public function setSeasonRank(?int $seasonRank): void
+    {
+        $this->seasonRank = $seasonRank;
+    }
+
     /**
      * Specify data which should be serialized to JSON
      * @link http://php.net/manual/en/jsonserializable.jsonserialize.php
@@ -125,6 +142,7 @@ class Match implements JsonSerializable
                 return ['id' => $hero->getId()];
             }, $heroes),
             'map' => $this->getMap()->getId(),
+            'season_rank' => $this->getSeasonRank()
         ];
     }
 }

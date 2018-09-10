@@ -9,6 +9,7 @@ use App\Entity\Map;
 use App\Entity\Season;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -38,6 +39,10 @@ class MatchFormType extends AbstractType
                 [
                     'class' => Map::class,
                 ]
+            )
+            ->add(
+                'season_rank',
+                IntegerType::class
             );
     }
 

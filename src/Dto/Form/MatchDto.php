@@ -32,6 +32,11 @@ class MatchDto
     private $map;
 
     /**
+     * @var int|null
+     */
+    private $seasonRank;
+
+    /**
      * @return Hero[]
      */
     public function getHeroes(): ?Collection
@@ -64,6 +69,24 @@ class MatchDto
         $this->map = $map;
     }
 
+    /**
+     * @return int|null
+     */
+    public function getSeasonRank(): ?int
+    {
+        return $this->seasonRank;
+    }
+
+    /**
+     * @param int|null $seasonRank
+     */
+    public function setSeasonRank(?int $seasonRank): void
+    {
+        $this->seasonRank = $seasonRank;
+    }
+
+
+
     public function createMatch(): Match
     {
         $match = new Match();
@@ -71,6 +94,7 @@ class MatchDto
         !$this->heroes ?: $match->setHeroes($this->heroes);
         !$this->season ?: $match->setSeason($this->season);
         !$this->map ?: $match->setMap($this->map);
+        $match->setSeasonRank($this->seasonRank);
 
         return $match;
     }
@@ -80,6 +104,7 @@ class MatchDto
         !$this->heroes ?: $match->setHeroes($this->heroes);
         !$this->season ?: $match->setSeason($this->season);
         !$this->map ?: $match->setMap($this->map);
+        $match->setSeasonRank($this->seasonRank);
 
         return $match;
     }
@@ -91,6 +116,7 @@ class MatchDto
         !$match->getHeroes() ?: $matchDto->setHeroes($match->getHeroes());
         !$match->getSeason() ?: $matchDto->setSeason($match->getSeason());
         !$match->getMap() ?: $matchDto->setMap($match->getMap());
+        $matchDto->setSeasonRank($match->getSeasonRank());
 
         return $matchDto;
     }
