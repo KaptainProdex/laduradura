@@ -4,6 +4,8 @@
             <thead>
             <tr>
                 <th>Map</th>
+                <th>+ / -</th>
+                <th>Season Rank</th>
                 <th>Heroes</th>
                 <th>Actions</th>
             </tr>
@@ -29,6 +31,7 @@
                 this.matches.unshift({
                     new: true,
                     edit: true,
+                    seasonRank: null,
                     heroes: [],
                     id: (this.matches.length + 1),
                     map: 0,

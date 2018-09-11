@@ -14,6 +14,24 @@
         </td>
         <td>
             <span v-if="!match.edit">
+                {{ seasonRankDiff(match, index) }}
+            </span>
+        </td>
+        <td>
+            <span v-if="!match.edit">
+                <span v-if="match.seasonRank">
+                    {{ match.seasonRank }}
+                </span>
+                <span v-else>
+                    - / -
+                </span>
+            </span>
+            <span v-else>
+                    <input class="input" type="number" v-model="match.seasonRank">
+            </span>
+        </td>
+        <td>
+            <span v-if="!match.edit">
                 <ul>
                     <li v-for="hero in match.heroes">
                         {{ $parent.$parent.heroes[hero].name }}
@@ -36,7 +54,7 @@
                 <button class="button" @click="cancelMatch(index)">
                     Cancel
                 </button>
-                <button class="button is-success" @click="matchCreate(match)">
+                <button class="button is-success" @click="matchCreate(match, index)">
                     Create
                 </button>
             </span>
@@ -61,7 +79,7 @@
 </template>
 
 <script>
-    import { updateMatch, deleteMatch, createMatch } from "../api/v1/match"
+    import {updateMatch, deleteMatch, createMatch} from "../api/v1/match"
 
     export default {
         name: 'match-table-row',
@@ -71,6 +89,7 @@
                 if (match.edit) {
                     let data = {
                         map: match.map,
+                        seasonRank: match.seasonRank,
                         heroes: match.heroes,
                         season: match.season
                     }
@@ -89,9 +108,10 @@
             cancelMatch: function (index) {
                 this.$parent.matches.splice(index, 1)
             },
-            matchCreate: function (match) {
+            matchCreate: function (match, index) {
                 let data = {
                     map: match.map,
+                    seasonRank: match.seasonRank,
                     heroes: match.heroes,
                     season: match.season
                 }
@@ -101,6 +121,22 @@
                     match.new = false
                     match.edit = false
                 })
+
+                this.$parent.matches.splice(0, 1)
+                this.$parent.matches.push(match)
+            },
+            seasonRankDiff(match, index) {
+                let diff = 0;
+                let currentMatch = match.seasonRank
+                let previousMatch = 0;
+                if (index <= 0) {
+                    diff = '- / -'
+                } else {
+                    previousMatch = this.$parent.matches[index - 1].seasonRank
+                    diff = currentMatch - previousMatch
+                    if (diff === 0) diff = '- / -'
+                }
+                return diff;
             }
         }
     }
