@@ -122,17 +122,15 @@
                     match.edit = false
                 })
 
-                this.$parent.matches.splice(0, 1)
-                this.$parent.matches.push(match)
             },
             seasonRankDiff(match, index) {
                 let diff = 0;
                 let currentMatch = match.seasonRank
                 let previousMatch = 0;
-                if (index <= 0) {
+                if (this.$parent.matches.length <= index) {
                     diff = '- / -'
                 } else {
-                    previousMatch = this.$parent.matches[index - 1].seasonRank
+                    previousMatch = this.$parent.matches[index + 1].seasonRank
                     diff = currentMatch - previousMatch
                     if (diff === 0) diff = '- / -'
                 }

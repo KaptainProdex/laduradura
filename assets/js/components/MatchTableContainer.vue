@@ -62,7 +62,7 @@ export default {
 
                 let mHeroes = []
                 match.heroes.forEach(function(hero) {
-                    mHeroes.push(hero.id)
+                    mHeroes.unshift(hero.id)
                 })
                 match.heroes = mHeroes
             })
