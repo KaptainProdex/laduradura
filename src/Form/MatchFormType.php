@@ -41,7 +41,7 @@ class MatchFormType extends AbstractType
                 ]
             )
             ->add(
-                'season_rank',
+                'seasonRank',
                 IntegerType::class
             );
     }

@@ -142,7 +142,7 @@ class Match implements JsonSerializable
                 return ['id' => $hero->getId()];
             }, $heroes),
             'map' => $this->getMap()->getId(),
-            'season_rank' => $this->getSeasonRank()
+            'seasonRank' => $this->getSeasonRank()
         ];
     }
 }
