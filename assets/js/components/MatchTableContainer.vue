@@ -67,7 +67,7 @@ export default {
                 match.heroes = mHeroes
             })
 
-            self.matches = matches
+            self.matches = matches.reverse()
             self.loading.matches = false
         })
     },
