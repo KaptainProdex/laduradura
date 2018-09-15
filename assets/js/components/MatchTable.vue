@@ -41,7 +41,6 @@
             },
         },
         components: {
-            MatchTableRow,
             MatchTableEditRow,
             MatchTableDisplayRow
         }
