@@ -1,53 +1,27 @@
 <template>
     <tr>
         <td>
-            <span v-if="!match.edit">
-                {{ $parent.$parent.maps[match.map].name }}
-            </span>
-            <span v-else>
-                <select class="select" v-model="match.map">
-                  <option v-for="map, index in $parent.$parent.maps" :value="index">
-                      {{ map.name }}
-                  </option>
-                </select>
-            </span>
+            <select class="select" v-model="match.map">
+                <option v-for="map, index in $parent.$parent.maps" :value="index">
+                    {{ map.name }}
+                </option>
+            </select>
         </td>
         <td>
-            <span v-if="!match.edit">
-                {{ seasonRankDiff(match, index) }}
-            </span>
+            {{ seasonRankDiff(match, index) }}
         </td>
         <td>
-            <span v-if="!match.edit">
-                <span v-if="match.seasonRank">
-                    {{ match.seasonRank }}
-                </span>
-                <span v-else>
-                    - / -
-                </span>
-            </span>
-            <span v-else>
-                    <input class="input" type="number" v-model="match.seasonRank">
-            </span>
+            <input class="input" type="number" v-model="match.seasonRank">
         </td>
         <td>
-            <span v-if="!match.edit">
-                <ul>
-                    <li v-for="hero in match.heroes">
-                        {{ $parent.$parent.heroes[hero].name }}
-                    </li>
-                </ul>
-            </span>
-            <span v-else>
-                <ul>
-                    <li v-for="hero in $parent.$parent.heroes">
-                        <label class="checkbox">
-                            <input type="checkbox" class="checkbox" :value="hero.id" v-model="match.heroes">
-                            {{ hero.name }}
-                        </label>
-                    </li>
-                </ul>
-            </span>
+            <ul>
+                <li v-for="hero in $parent.$parent.heroes">
+                    <label class="checkbox">
+                        <input type="checkbox" class="checkbox" :value="hero.id" v-model="match.heroes">
+                        {{ hero.name }}
+                    </label>
+                </li>
+            </ul>
         </td>
         <td>
             <span v-if="match.new">
@@ -82,7 +56,7 @@
     import {updateMatch, deleteMatch, createMatch} from "../api/v1/match"
 
     export default {
-        name: 'match-table-row',
+        name: 'match-table-edit-row',
         props: ['match', 'index'],
         methods: {
             matchClick: function (match) {

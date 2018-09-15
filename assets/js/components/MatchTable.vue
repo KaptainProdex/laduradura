@@ -11,7 +11,7 @@
             </tr>
             </thead>
             <tbody>
-                <MatchTableRow v-for="match, index in matches" :match="match" :index="index" :key="index"/>
+                <component :is="match.edit ? 'MatchTableEditRow' : 'MatchTableDisplayRow'" v-for="match, index in matches" :match="match" :index="index" :key="index"/>
             </tbody>
         </table>
         <button class="button" @click="addNewMatch">
@@ -21,7 +21,8 @@
 </template>
 
 <script>
-    import MatchTableRow from './MatchTableRow'
+    import MatchTableDisplayRow from './MatchTableDisplayRow'
+    import MatchTableEditRow from './MatchTableEditRow'
 
     export default {
         name: 'match-table',
@@ -40,7 +41,9 @@
             },
         },
         components: {
-            MatchTableRow
+            MatchTableRow,
+            MatchTableEditRow,
+            MatchTableDisplayRow
         }
     }
 </script>
