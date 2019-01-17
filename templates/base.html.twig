@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>{% block title %}Welcome!{% endblock %}</title>
     {% block stylesheets %}
-        <link  rel="stylesheet" href="{{ asset('build/css/app.css') }}">
+        <link rel="stylesheet" href="{{ asset('build/css/app.css') }}">
     {% endblock %}
 </head>
 <body>
@@ -20,35 +20,44 @@
                 </figure>
 
             </li>
-            <li class="nav-main__user media">
-                <div class="media-left">
-                    <figure class="image is-48x48">
-                        <img class="is-rounded" src="{{ asset('build/assets/images/dummy/user-icon__dummy.png') }}" alt="Placeholder image">
-                    </figure>
-                </div>
-                <div class="media-content">
-                    <p class="title is-4">Fowlancr</p>
-                    <p class="subtitle is-6">#2398</p>
-                </div>
-            </li>
-            <li class="nav-main__item nav-main__item--is-active">
-                <a class="nav-main__link" href="#">
-                    <svg class="nav-main__icon" viewBox="0 0 24 24">
-                        <use xlink:href="{{ asset('build/assets/images/svg/icon_sprite-laduradura.svg') }}#icon--add-circle"></use>
-                    </svg><span class="nav-main__name">Matches</span>
-                </a>
-            </li>
-            <li class="nav-main__item"><a class="nav-main__link" href="/about">
-                    <svg class="nav-main__icon" viewBox="0 0 24 24">
-                        <use xlink:href="{{ asset('build/assets/images/svg/icon_sprite-laduradura.svg') }}#icon--deadline"></use>
-                    </svg><span class="nav-main__name">About</span>
-                </a>
-            </li>
+
+            {% if is_granted('ROLE_USER') %}
+                <li class="nav-main__user media">
+                    <div class="media-left">
+                        <figure class="image is-48x48">
+                            <img class="is-rounded" src="{{ asset('build/assets/images/dummy/user-icon__dummy.png') }}"
+                                 alt="Placeholder image">
+                        </figure>
+                    </div>
+                    <div class="media-content">
+                        <p class="title is-4">{{ app.user.username }}</p>
+                        <p class="subtitle is-6">#0000</p>
+                    </div>
+                </li>
+                <li class="nav-main__item nav-main__item--is-active">
+                    <a class="nav-main__link" href="#">
+                        <svg class="nav-main__icon" viewBox="0 0 24 24">
+                            <use xlink:href="{{ asset('build/assets/images/svg/icon_sprite-laduradura.svg') }}#icon--add-circle"></use>
+                        </svg>
+                        <span class="nav-main__name">Matches</span>
+                    </a>
+                </li>
+                <li class="nav-main__item"><a class="nav-main__link" href="/logout">
+                        <span class="nav-main__name">Logout</span>
+                    </a>
+                </li>
+            {% else %}
+                <li class="nav-main__item"><a class="nav-main__link" href="/login">
+                        <span class="nav-main__name">Login</span>
+                    </a>
+                </li>
+            {% endif %}
+
         </ul>
     </nav>
 </header>
 <main id="app" class="main">
-        <section class="section">
+    <section class="section">
         <div class="container">
             {% block body %}{% endblock %}
         </div>
